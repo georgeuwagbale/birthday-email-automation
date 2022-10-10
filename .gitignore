@@ -1,0 +1,14 @@
+# Ignore all env files, env folders, and files, and folders in any env folder
+/env/
+
+# Ignore all files with .env extension
+*.env
+
+# Ignore all workbook files, workbook folders, and files, and folders in any workbook folder
+/workbook/
+
+/img/
+
+/fonts/
+
+**__pycache__/
