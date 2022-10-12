@@ -1,7 +1,3 @@
-**__pycache__
-**gitignore
-*.env
-/env/
-/fonts/
-/img/
-/workbook/
+*/__pycache__
+*/gitignore
+/env
