@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+  mail:
+    container_name: mail_client
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: python3 /app/src/main.py
+    env_file:
+      - email.env
