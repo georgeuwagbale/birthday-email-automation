@@ -6,6 +6,10 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+    volumes:
+      - ./:/app
     command: python3 /app/src/main.py
     env_file:
       - email.env
+
+

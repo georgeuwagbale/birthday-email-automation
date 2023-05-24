@@ -9,14 +9,25 @@ from scheduler import Scheduler
 
 def main():
     load_dotenv("../email.env")
-
-
-    # Excel file varibales
+    months = {
+        1: "January",
+        2: "February",
+        3: "March",
+        4: "April",
+        5: "May",
+        6: "June",
+        7: "July",
+        8: "August",
+        9: "September",
+        10: "October",
+        11: "November",
+        12: "December"
+    }
+    # Excel file variables
     try:
         excel_sheet_path = getenv("EXCEL_SHEET_PATH")
         excel_active_sheet = getenv("EXCEL_ACTIVE_SHEET")
         column_no = getenv("COLUMN_NUMBER")
-
 
         # Email client variables
         smtp_server = getenv("SMTP_SERVER")
@@ -38,18 +49,21 @@ def main():
         image = Writer("../img/birth1.jpg")
         image.write_on_image(birthday_celebrants)
 
-        mail = MailSender(smtp_server,smtp_port, email_pass)
+        mail = MailSender(smtp_server, int(smtp_port), email_pass)
         mail.set_email_subject(email_subject)
         mail.set_email_sender(email_sender)
         mail.set_email_receiver(email_receiver)
         mail.set_email_content(email_content)
         mail.add_html_with_image(email_image_path)
         mail.send_email()
-        print("Email sent successfully.", f"{dt.datetime.now().day} day, {dt.datetime.now().hour} hour, {dt.datetime.now().minute}, ")
+        date = dt.datetime.now()
+        print("Email sent successfully.", f"{date.hour}:{date.minute}, {dt.datetime.now().day}th of",
+              f"{months.get(date.month)}")
     except Exception as e:
         print(e)
 
-print("Starting")
+
+print("Starting...")
 
 schedule = Scheduler()
 # schedule.daily(dt.time(hour=11), main)
